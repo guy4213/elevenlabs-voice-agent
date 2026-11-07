@@ -1,0 +1,15 @@
+{
+  "name": "elevenlabs-voice-agent",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "agent": "node --env-file=.env scripts/create-agent.mjs",
+    "start": "node --env-file=.env server.mjs",
+    "test": "node --env-file=.env scripts/test.mjs",
+    "test:browser": "node --env-file=.env scripts/test-browser.mjs"
+  },
+  "engines": {
+    "node": ">=20.6"
+  }
+}

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>סוכן קולי · דמו</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body data-status="disconnected" data-mode="">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <div>
+        <h1 id="agentName">סוכן קולי</h1>
+        <p class="sub">ElevenLabs Agents · דמו</p>
+      </div>
+    </div>
+    <div class="status-pill" aria-live="polite">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span id="statusText">לא מחובר</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="card stage" aria-label="שיחה קולית">
+      <button class="orb" id="orb" type="button" aria-label="התחל או סיים שיחה">
+        <span class="orb-ring" aria-hidden="true"></span>
+        <span class="orb-core" aria-hidden="true">
+          <svg class="icon-mic" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="3" width="6" height="11" rx="3"/>
+            <path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>
+          </svg>
+          <span class="bars">
+            <i></i><i></i><i></i><i></i><i></i>
+          </span>
+        </span>
+      </button>
+
+      <p class="hint" id="hint">לחץ על העיגול כדי להתחיל לדבר</p>
+
+      <div class="controls">
+        <button id="toggleBtn" class="btn primary" type="button">התחל שיחה</button>
+        <button id="muteBtn" class="btn" type="button" disabled>השתק מיקרופון</button>
+      </div>
+
+      <label class="mic-picker">
+        <span>מיקרופון</span>
+        <select id="micSelect">
+          <option value="">ברירת המחדל של המערכת</option>
+        </select>
+      </label>
+
+      <div class="meters">
+        <div class="meter">
+          <span>אתה</span>
+          <div class="track"><i id="inMeter"></i></div>
+        </div>
+        <div class="meter">
+          <span>הסוכן</span>
+          <div class="track agent"><i id="outMeter"></i></div>
+        </div>
+      </div>
+
+      <div id="error" class="error" role="alert" hidden></div>
+    </section>
+
+    <section class="stats" aria-label="נתוני שיחה">
+      <div class="card tile">
+        <span class="tile-label">מצב</span>
+        <span class="tile-value" id="statMode">—</span>
+      </div>
+      <div class="card tile">
+        <span class="tile-label">זמן תגובה אחרון</span>
+        <span class="tile-value" id="statLast">—</span>
+      </div>
+      <div class="card tile">
+        <span class="tile-label">זמן תגובה ממוצע</span>
+        <span class="tile-value" id="statAvg">—</span>
+      </div>
+      <div class="card tile">
+        <span class="tile-label">משך השיחה</span>
+        <span class="tile-value" id="statDuration">0:00</span>
+      </div>
+      <p class="stats-note">זמן תגובה: מרגע שהפסקת לדבר ועד שהסוכן מתחיל לענות</p>
+    </section>
+
+    <section class="card transcript" aria-label="תמלול">
+      <div class="card-head">
+        <h2>תמלול השיחה</h2>
+        <span class="count" id="msgCount">0 הודעות</span>
+      </div>
+      <div class="log" id="log" aria-live="polite">
+        <p class="empty">ההודעות שלך ושל הסוכן יופיעו כאן בזמן אמת</p>
+      </div>
+    </section>
+
+    <section class="card agent-info" aria-label="הגדרות הסוכן">
+      <div class="card-head">
+        <h2>הגדרות הסוכן</h2>
+      </div>
+      <dl class="info" id="agentInfo">
+        <div><dt>טוען…</dt><dd></dd></div>
+      </dl>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@elevenlabs/client@1.30.0/dist/lib.iife.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
